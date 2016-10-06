@@ -2,4 +2,4 @@
 
 echo "Starting server"
 
-nc -l -p 5000 >> logs/server.log
+nc -l -p 5000 >> log/server.log

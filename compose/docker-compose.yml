@@ -1,0 +1,11 @@
+version: '2'
+services:
+  my_server:
+    image: proc1
+    ports:
+    - "5000:5000"
+    volumes:
+    - serverlog:/log
+volumes:
+    serverlog:
+         driver: local

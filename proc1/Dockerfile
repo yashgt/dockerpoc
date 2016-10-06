@@ -5,4 +5,4 @@ COPY server.sh ./server.sh
 RUN chmod 777 server.sh
 RUN mkdir log
 
-CMD server.sh
+CMD ./server.sh
