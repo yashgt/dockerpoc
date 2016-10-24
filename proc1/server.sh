@@ -1,5 +1,7 @@
 #!/bin/sh
 
-echo "Starting server"
+echo `date` "Starting server" 
 
-nc -l -p 5000 >> log/server.log
+nc -v -l -p 5000 >> log/server.log
+
+echo `date` "Exiting server"

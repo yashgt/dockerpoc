@@ -1,11 +1,23 @@
 version: '2'
 services:
-  my_server:
-    image: proc1
-    ports:
-    - "5000:5000"
+  my_client_1:
+    image: client
+    #build: ../client
+    restart: on-failure:3    
     volumes:
-    - serverlog:/log
-volumes:
-    serverlog:
-         driver: local
+    - /home/admin/dockerpoc/compose/serverlog:/log
+    depends_on:
+    - my_server    
+  my_server:
+    #image: proc1
+    image: gophernet/netcat
+    command: -v -l -p 5000    
+    expose:
+     - "5000"    
+    #build: ../proc1
+    restart: on-failure:3    
+    volumes:
+    - /home/admin/dockerpoc/compose/serverlog:/log
+#volumes:
+#    serverlog:
+#         driver: local
