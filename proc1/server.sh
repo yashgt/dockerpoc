@@ -1,8 +1,8 @@
 #!/bin/sh
 
-echo `date` "Starting server" 
+echo `date` "Starting new server" 
 
 #nc -v -l -p 5000 >> log/server.log
-nc -v -l -p 5000 
+nc -v -lk -p 5000 -o /log/traffic.log
 
 echo `date` "Exiting server"

@@ -4,5 +4,6 @@ FROM busybox
 COPY client.sh ./client.sh
 COPY clienttext.txt ./clienttext.txt
 RUN chmod 777 client.sh
+RUN mkdir log
 
 CMD ./client.sh
