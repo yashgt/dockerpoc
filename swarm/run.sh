@@ -1,3 +1,4 @@
+docker swarm init --force-new-cluster --advertise-addr 192.168.99.100
 docker node ls
 
 docker network create --driver overlay --subnet 10.0.9.0/24 my-network
