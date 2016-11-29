@@ -3,6 +3,7 @@ RUN apt-get -y update
 RUN apt-get install -y netcat
 RUN apt-get install -y inetutils-ping
 RUN apt-get install -y net-tools
+RUN apt-get install -y dnsutils
 
 COPY client.sh ./client.sh
 COPY clienttext.txt ./clienttext.txt

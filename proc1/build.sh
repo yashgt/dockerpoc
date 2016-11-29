@@ -1,2 +1,2 @@
-docker build -t proc1 .
+docker build -t yashgt/proc1 .
 

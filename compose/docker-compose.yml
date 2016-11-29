@@ -1,7 +1,7 @@
 version: '3'
 services:
   my_client_1:
-    image: yashgt/client
+    image: yashgt/client:latest
     build: ../client
     #restart: on-failure:3    
     volumes:
@@ -9,13 +9,15 @@ services:
     depends_on:
     - my_server    
     labels:
-        - "constraint:node==gol05854"    
+        - "constraint:node==default"    
+    environment:
+        - "constraint:node==default"    
     networks:
     - mynet        
   my_server:
-    image: yashgt/proc1
+    image: yashgt/proc1:latest
     #image: gophernet/netcat
-    #command: -v -l -p 5000    
+    command: "2"   
     expose:
      - "5000"    
     build: ../proc1
@@ -23,6 +25,8 @@ services:
     volumes:
     - serverlog:/log
     labels:
+        - "constraint:node==gol05854"    
+    environment:
         - "constraint:node==gol05854"    
     networks:
     - mynet        

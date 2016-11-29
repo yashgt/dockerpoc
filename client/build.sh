@@ -1,2 +1,2 @@
-docker build -t client .
+docker build -t yashgt/client .
 
