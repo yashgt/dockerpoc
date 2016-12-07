@@ -1,38 +1,48 @@
 version: '3'
 services:
-  my_client_1:
+ my_client_1:
     image: yashgt/client:latest
     build: ../client
-    #restart: on-failure:3    
+    #restart: on-failure:3
     volumes:
     - serverlog:/log
     depends_on:
     - my_server    
-    labels:
-        - "constraint:node==default"    
-    environment:
-        - "constraint:node==default"    
+        
     networks:
-    - mynet        
-  my_server:
+    - mynet
+
+
+    deploy:
+      placement:
+        constraints:
+        - node.hostname == gol05854
+
+ my_server:
     image: yashgt/proc1:latest
     #image: gophernet/netcat
-    command: "2"   
+    command: ["3"]
     expose:
-     - "5000"    
+     - "5000"
     build: ../proc1
-    #restart: on-failure:3    
+    #restart: on-failure:3
     volumes:
     - serverlog:/log
-    labels:
-        - "constraint:node==gol05854"    
+    deploy:
+        placement:
+                constraints:
+                        - node.hostname == gol05854
+
+    #Container will start with these env vars
+    #$ENAME is set when invoking compose/deploy
     environment:
-        - "constraint:node==gol05854"    
+        - ENAME=${ENAME}
+
     networks:
-    - mynet        
+    - mynet
 volumes:
     serverlog:
          driver: local
 networks:
     mynet:
-        driver: overlay    
+        driver: overlay
