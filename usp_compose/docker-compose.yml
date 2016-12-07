@@ -1,0 +1,30 @@
+version: '3'
+services:
+ db2:
+    image: ibmcom/db2express-c:latest
+    command: ["db2start"]
+    volumes:
+    - /home/admin/dbdir:/home/db2inst1/db2inst1/
+    environment:
+        - DB2INST1_PASSWORD=db2inst1-pwd
+        - LICENSE=accept
+    networks:
+    - usp_net
+ mq:
+    image: ibmcom/mq:latest
+    ports:
+     - "50000:50000"    
+    expose:
+     - "5000"
+ #   volumes:
+ #   - serverlog:/log
+
+
+    networks:
+    - usp_net
+volumes:
+    share:
+         driver: local
+networks:
+    usp_net:
+        driver: overlay
